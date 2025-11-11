@@ -3,6 +3,7 @@
 .gallery-page {
   min-height: 100vh;
   padding-top: $spacing-md;
+  background: $light-color;
 }
 
 .page-title {
@@ -22,36 +23,55 @@
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: $spacing-md;
-  
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: $spacing-lg;
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: $spacing-md;
+  }
+
   @media (max-width: $mobile) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: $spacing-sm;
   }
 }
 
 .gallery-item {
   position: relative;
-  overflow: hidden;
   cursor: pointer;
-  aspect-ratio: 4 / 3;
-  border-radius: 4px;
-  
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 100%; // Square aspect ratio
+  }
+
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: opacity 0.3s ease;
   }
-  
+
   &:hover {
-    img {
-      transform: scale(1.1);
-    }
-    
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
     .gallery-overlay {
       opacity: 1;
+    }
+
+    img {
+      opacity: 0.85;
     }
   }
 }
@@ -62,16 +82,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
   @include flex-center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+
   span {
     color: white;
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.4);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: 4px;
   }
 }
 

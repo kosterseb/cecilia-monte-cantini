@@ -1,17 +1,29 @@
 import { useEffect, useState } from 'react';
 import './Gallery.scss';
-import img1 from '../assets/IMG-20250804-WA0090.jpg';
-import img2 from '../assets/IMG-20250804-WA0094.jpg';
-import img3 from '../assets/IMG-20250804-WA0196.jpg';
-import img4 from '../assets/IMG-20250804-WA0201.jpg';
-import img5 from '../assets/IMG-20250804-WA0206.jpg';
-import img6 from '../assets/IMG-20250804-WA0208.jpg';
-import img7 from '../assets/IMG-20250804-WA0233.jpg';
-import img8 from '../assets/IMG-20250804-WA0405.jpg';
-import img9 from '../assets/IMG-20250804-WA0412.jpg';
-import img10 from '../assets/IMG-20250804-WA0413.jpg';
-import img11 from '../assets/IMG-20250804-WA0417.jpg';
-import img12 from '../assets/IMG-20250804-WA0418.jpg';
+
+// Import hotel gallery images
+import img1 from '../assets/gallery/IMG_8714.jpeg';
+import img2 from '../assets/gallery/IMG_8768.jpeg';
+import img3 from '../assets/gallery/IMG_8838.jpeg';
+import img4 from '../assets/gallery/IMG_8846.jpeg';
+import img5 from '../assets/gallery/IMG_9696.jpeg';
+import img6 from '../assets/gallery/IMG_9723.jpeg';
+import img7 from '../assets/gallery/IMG_9752.jpeg';
+import img8 from '../assets/gallery/IMG_9753.jpeg';
+import img9 from '../assets/gallery/IMG_9762.jpeg';
+import img10 from '../assets/gallery/IMG_9767.jpeg';
+import img11 from '../assets/gallery/IMG_9769.jpeg';
+import img12 from '../assets/gallery/IMG_9770.jpeg';
+import img13 from '../assets/gallery/IMG_9772.jpeg';
+import img14 from '../assets/gallery/IMG_9778.jpeg';
+import img15 from '../assets/gallery/IMG_9780.jpeg';
+import img16 from '../assets/gallery/IMG_9783.jpeg';
+import img17 from '../assets/gallery/IMG_9785.jpeg';
+import img18 from '../assets/gallery/IMG_9786.jpeg';
+import img19 from '../assets/gallery/IMG_9787.jpeg';
+import img20 from '../assets/gallery/IMG_9799.jpeg';
+import img21 from '../assets/gallery/IMG_9802.jpeg';
+import img22 from '../assets/gallery/IMG_9889.jpeg';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -19,8 +31,8 @@ const Gallery = () => {
 
   useEffect(() => {
     const galleryImages = [
-      img1, img2, img3, img4, img5, img6,
-      img7, img8, img9, img10, img11, img12
+      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
+      img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22
     ];
 
     setImages(galleryImages);
@@ -61,7 +73,7 @@ const Gallery = () => {
         <div className="container">
           <h1 className="page-title text-center">Gallery</h1>
           <p className="page-subtitle text-center">
-            Explore the beauty of Montecatini Terme and the surrounding Tuscan region
+            Discover Hotel Donatello's elegant accommodations and welcoming atmosphere
           </p>
 
           <div className="gallery-grid">
