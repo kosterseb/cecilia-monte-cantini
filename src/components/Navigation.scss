@@ -36,6 +36,7 @@
   left: -67px;
   top: calc(50% - 50px);
   transform: translateY(-50%);
+  z-index: 0; // Behind the text
 
   @media (max-width: $mobile) {
     width: 105px;
@@ -55,6 +56,7 @@
   flex-direction: column;
   gap: 0.25rem;
   position: relative;
+  z-index: 1; // In front of the sun
 
   &:hover {
     opacity: 0.8;
@@ -125,26 +127,34 @@
   display: flex;
   list-style: none;
   gap: $spacing-md;
-  
+
   @media (max-width: $mobile) {
     position: fixed;
     top: 0;
     right: -100%;
     height: 100vh;
-    width: 70%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 100%;
     background: $light-color;
     flex-direction: column;
-    padding: $spacing-xl $spacing-md;
+    padding: $spacing-xl $spacing-lg;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
-    
+    z-index: 1002;
+    justify-content: center;
+    align-items: center;
+
     &.active {
       right: 0;
     }
   }
-  
+
   li {
+    @media (max-width: $mobile) {
+      text-align: center;
+      width: 100%;
+    }
+
     a {
       font-size: 1rem;
       color: $text-color;
@@ -152,13 +162,14 @@
       letter-spacing: 0.05em;
       padding: $spacing-xs 0;
       position: relative;
-      
+
       @media (max-width: $mobile) {
-        font-size: 1.25rem;
+        font-size: 1.75rem;
         display: block;
-        padding: $spacing-sm 0;
+        padding: $spacing-md 0;
+        font-weight: 400;
       }
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -168,16 +179,100 @@
         height: 1px;
         background: $accent-color;
         transition: width 0.3s ease;
+
+        @media (max-width: $mobile) {
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
-      
+
       &:hover::after,
       &.active::after {
         width: 100%;
+
+        @media (max-width: $mobile) {
+          width: 50%;
+        }
       }
-      
+
       &.active {
         color: $accent-color;
       }
+    }
+  }
+}
+
+.mobile-menu-header {
+  display: none;
+
+  @media (max-width: $mobile) {
+    display: block;
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    position: absolute;
+    top: $spacing-xl;
+    left: 50%;
+    transform: translateX(-50%);
+
+    h2 {
+      font-family: $font-heading;
+      font-size: 2rem;
+      color: $dark-color;
+      margin-bottom: $spacing-xs;
+      letter-spacing: 0.05em;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: $text-light;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.mobile-menu-footer {
+  display: none;
+
+  @media (max-width: $mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    position: absolute;
+    bottom: $spacing-xl;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.mobile-sun {
+  @media (max-width: $mobile) {
+    width: 80px;
+    height: 80px;
+    animation: rotateGently 20s linear infinite;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.quick-contact-link {
+  @media (max-width: $mobile) {
+    font-size: 1rem;
+    color: $accent-color;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: $spacing-sm $spacing-lg;
+    border: 2px solid $accent-color;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $accent-color;
+      color: white;
     }
   }
 }

@@ -6,6 +6,23 @@
   overflow: hidden;
 }
 
+.page-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1;
+  opacity: 0.15;
+
+  @media (max-width: $mobile) {
+    background-attachment: scroll;
+  }
+}
+
 .page-title {
   margin-bottom: $spacing-sm;
   animation: fadeIn 0.8s ease-out;
