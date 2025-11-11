@@ -1,0 +1,141 @@
+@import '../styles/main.scss';
+
+.navigation {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  padding: $spacing-sm 0;
+}
+
+.nav-container {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  .logo-name {
+    font-family: $font-heading;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: $dark-color;
+    letter-spacing: 0.05em;
+  }
+  
+  .logo-subtitle {
+    font-size: 0.75rem;
+    color: $text-light;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: $spacing-md;
+  
+  @media (max-width: $mobile) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background: $light-color;
+    flex-direction: column;
+    padding: $spacing-xl $spacing-md;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    
+    &.active {
+      right: 0;
+    }
+  }
+  
+  li {
+    a {
+      font-size: 1rem;
+      color: $text-color;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      padding: $spacing-xs 0;
+      position: relative;
+      
+      @media (max-width: $mobile) {
+        font-size: 1.25rem;
+        display: block;
+        padding: $spacing-sm 0;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: $accent-color;
+        transition: width 0.3s ease;
+      }
+      
+      &:hover::after,
+      &.active::after {
+        width: 100%;
+      }
+      
+      &.active {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-xs;
+  z-index: 1001;
+  
+  @media (max-width: $mobile) {
+    display: flex;
+  }
+  
+  span {
+    width: 25px;
+    height: 2px;
+    background: $dark-color;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}

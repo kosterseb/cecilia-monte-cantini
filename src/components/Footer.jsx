@@ -1,0 +1,36 @@
+import './Footer.scss';
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>Donatello</h3>
+            <p>Your home away from home in the heart of Tuscany</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Contact</h4>
+            <p>Viale Giacomo Puccini n.16</p>
+            <p>51016 Montecatini Terme</p>
+            <p>Provincia: Pistoia, Italy</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Location</h4>
+            <p>30 minutes from Florence</p>
+            <p>30 minutes from Lucca</p>
+            <p>30 minutes from Pisa Airport</p>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Hotel Donatello. Montecatini Terme, Tuscany.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
