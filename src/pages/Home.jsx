@@ -1,6 +1,7 @@
 import './Home.scss';
 import heroImage from '../assets/IMG-20250804-WA0056.jpg';
 import introImage from '../assets/IMG-20250804-WA0229.jpg';
+import ctaImage from '../assets/IMG-20250804-WA0412.jpg';
 
 const Home = () => {
 
@@ -141,12 +142,17 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="section cta-section">
-        <div className="container text-center">
-          <h2>Experience Tuscany</h2>
-          <p className="cta-text">
-            Discover the perfect blend of historic elegance and modern comfort in the heart of Tuscany.
-          </p>
+      <section
+        className="section cta-section"
+        style={{ backgroundImage: `url(${ctaImage})` }}
+      >
+        <div className="cta-overlay">
+          <div className="container text-center">
+            <h2>Experience Tuscany</h2>
+            <p className="cta-text">
+              Discover the perfect blend of historic elegance and modern comfort in the heart of Tuscany.
+            </p>
+          </div>
         </div>
       </section>
     </div>

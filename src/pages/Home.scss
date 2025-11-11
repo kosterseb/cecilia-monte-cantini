@@ -170,17 +170,46 @@
 
 // CTA Section
 .cta-section {
-  background: white;
-  
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $mobile) {
+    min-height: 300px;
+  }
+}
+
+.cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   h2 {
     margin-bottom: $spacing-md;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   }
-  
+
   .cta-text {
     font-size: 1.2rem;
-    color: $text-light;
+    color: rgba(255, 255, 255, 0.95);
     max-width: 700px;
     margin: 0 auto;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   }
 }
 
