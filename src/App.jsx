@@ -16,11 +16,14 @@ function App() {
     setShowSplash(false);
   };
 
+  // Only use basename in production (GitHub Pages)
+  const basename = import.meta.env.MODE === 'production' ? '/cecilia-monte-cantini' : '';
+
   return (
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       {!showSplash && (
-        <Router basename="/cecilia-monte-cantini">
+        <Router basename={basename}>
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
