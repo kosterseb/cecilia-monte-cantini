@@ -1,7 +1,7 @@
 import './Explore.scss';
 import attraction1 from '../assets/IMG-20250804-WA0090.jpg';
-import attraction2 from '../assets/IMG-20250804-WA0094.jpg';
-import attraction3 from '../assets/IMG-20250804-WA0196.jpg';
+import attraction2 from '../assets/IMG-20250804-WA0405.jpg';
+import attraction3 from '../assets/IMG-20250804-WA0412.jpg';
 import attraction4 from '../assets/IMG-20250804-WA0201.jpg';
 import attraction5 from '../assets/IMG-20250804-WA0206.jpg';
 import attraction6 from '../assets/IMG-20250804-WA0208.jpg';
