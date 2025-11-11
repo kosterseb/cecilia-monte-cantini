@@ -120,15 +120,18 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.95);
-  @include flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2000;
   cursor: pointer;
   animation: fadeIn 0.3s ease;
   padding: $spacing-md;
-  overflow: hidden;
 
   @media (max-width: $mobile) {
-    padding: 60px 10px 40px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
   }
 
   img {
@@ -141,8 +144,9 @@
     animation: zoomIn 0.3s ease;
 
     @media (max-width: $mobile) {
-      max-width: calc(100vw - 20px);
-      max-height: calc(100vh - 120px);
+      max-width: calc(100vw - 100px);
+      max-height: calc(100vh - 140px);
+      object-fit: contain;
     }
   }
 }
@@ -159,17 +163,21 @@
   font-size: 2rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
 
   @media (max-width: $mobile) {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    top: $spacing-xs;
-    right: $spacing-xs;
+    width: 45px;
+    height: 45px;
+    font-size: 1.8rem;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -185,17 +193,20 @@
   font-size: 3rem;
   cursor: pointer;
   transition: background 0.3s ease;
-  @include flex-center;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
-  
+
   &.lightbox-prev {
     left: $spacing-md;
 
     @media (max-width: $mobile) {
-      left: $spacing-xs;
+      left: 10px;
     }
   }
 
@@ -203,14 +214,14 @@
     right: $spacing-md;
 
     @media (max-width: $mobile) {
-      right: $spacing-xs;
+      right: 10px;
     }
   }
 
   @media (max-width: $mobile) {
-    width: 45px;
-    height: 45px;
-    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 2.5rem;
   }
 }
 
@@ -224,8 +235,8 @@
   letter-spacing: 0.05em;
 
   @media (max-width: $mobile) {
-    bottom: $spacing-sm;
-    font-size: 0.9rem;
+    bottom: 15px;
+    font-size: 0.95rem;
   }
 }
 
