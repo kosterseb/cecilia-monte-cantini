@@ -85,22 +85,42 @@ const Home = () => {
           <h2 className="text-center">Perfect Location</h2>
           <div className="location-grid">
             <div className="location-card">
-              <div className="location-icon">🏛️</div>
+              <div className="location-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
               <h3>Florence</h3>
               <p>30 minutes</p>
             </div>
             <div className="location-card">
-              <div className="location-icon">🏰</div>
+              <div className="location-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-10 6L2 8v12z" />
+                  <path d="M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2" />
+                </svg>
+              </div>
               <h3>Lucca</h3>
               <p>30 minutes</p>
             </div>
             <div className="location-card">
-              <div className="location-icon">✈️</div>
+              <div className="location-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                </svg>
+              </div>
               <h3>Pisa Airport</h3>
               <p>30 minutes</p>
             </div>
             <div className="location-card">
-              <div className="location-icon">🌊</div>
+              <div className="location-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M2 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10" />
+                  <path d="M2 12c0 2.5 1 4.5 2.5 6M12 2c1.5 2 2.5 4.5 2.5 7s-1 5-2.5 7" />
+                  <path d="M2 12h20" />
+                </svg>
+              </div>
               <h3>Tuscan Coast</h3>
               <p>1 hour</p>
             </div>

@@ -34,13 +34,14 @@
   flex-shrink: 0;
   position: absolute;
   left: -67px;
-  top: 50%;
+  top: calc(50% - 50px);
   transform: translateY(-50%);
 
   @media (max-width: $mobile) {
     width: 105px;
     height: 105px;
     left: -52px;
+    top: calc(50% - 35px);
   }
 
   svg {
@@ -92,7 +93,7 @@
 .weather-info {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
   font-size: 0.75rem;
   color: $accent-color;
   font-weight: 500;
@@ -102,10 +103,20 @@
   }
 
   .weather-icon {
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
 
     @media (max-width: $mobile) {
-      font-size: 0.85rem;
+      width: 14px;
+      height: 14px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      stroke: $accent-color;
     }
   }
 }

@@ -44,13 +44,84 @@ const Navigation = () => {
 
   const getWeatherIcon = (code) => {
     // Weather code mapping based on WMO codes
-    if (code === 0) return '☀️'; // Clear sky
-    if (code <= 3) return '⛅'; // Partly cloudy
-    if (code <= 48) return '🌫️'; // Fog
-    if (code <= 67) return '🌧️'; // Rain
-    if (code <= 77) return '🌨️'; // Snow
-    if (code <= 86) return '🌦️'; // Rain showers
-    return '⛈️'; // Thunderstorm
+    if (code === 0) {
+      // Clear sky
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      );
+    }
+    if (code <= 3) {
+      // Partly cloudy
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+        </svg>
+      );
+    }
+    if (code <= 48) {
+      // Fog
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M3 15h18M3 9h18M3 12h18" strokeLinecap="round" />
+        </svg>
+      );
+    }
+    if (code <= 67) {
+      // Rain
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="8" y1="19" x2="8" y2="21" strokeLinecap="round" />
+          <line x1="8" y1="13" x2="8" y2="15" strokeLinecap="round" />
+          <line x1="16" y1="19" x2="16" y2="21" strokeLinecap="round" />
+          <line x1="16" y1="13" x2="16" y2="15" strokeLinecap="round" />
+          <line x1="12" y1="21" x2="12" y2="23" strokeLinecap="round" />
+          <line x1="12" y1="15" x2="12" y2="17" strokeLinecap="round" />
+          <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25" />
+        </svg>
+      );
+    }
+    if (code <= 77) {
+      // Snow
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25" />
+          <line x1="8" y1="16" x2="8" y2="16" strokeLinecap="round" />
+          <line x1="8" y1="20" x2="8" y2="20" strokeLinecap="round" />
+          <line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" />
+          <line x1="12" y1="22" x2="12" y2="22" strokeLinecap="round" />
+          <line x1="16" y1="16" x2="16" y2="16" strokeLinecap="round" />
+          <line x1="16" y1="20" x2="16" y2="20" strokeLinecap="round" />
+        </svg>
+      );
+    }
+    if (code <= 86) {
+      // Rain showers
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="8" y1="19" x2="8" y2="21" strokeLinecap="round" />
+          <line x1="16" y1="19" x2="16" y2="21" strokeLinecap="round" />
+          <line x1="12" y1="21" x2="12" y2="23" strokeLinecap="round" />
+          <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25" />
+        </svg>
+      );
+    }
+    // Thunderstorm
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9" />
+        <polyline points="13 11 9 17 15 17 11 23" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
   };
 
   const toggleMenu = () => {
@@ -95,10 +166,10 @@ const Navigation = () => {
             <div className="logo-subtitle-wrapper">
               <span className="logo-subtitle">Montecatini Terme</span>
               {weather && (
-                <span className="weather-info">
-                  <span className="weather-icon">{getWeatherIcon(weather.code)}</span>
+                <div className="weather-info">
+                  <div className="weather-icon">{getWeatherIcon(weather.code)}</div>
                   <span>{weather.temp}°C</span>
-                </span>
+                </div>
               )}
             </div>
           </Link>
