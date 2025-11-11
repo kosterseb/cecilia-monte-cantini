@@ -1,6 +1,6 @@
 import './Home.scss';
-import heroImage from '../assets/IMG-20250804-WA0056.jpg';
-import introImage from '../assets/IMG-20250804-WA0229.jpg';
+import heroImage from '../assets/IMG-20250804-WA0412.jpg';
+import introImage from '../assets/IMG-20250804-WA0417.jpg';
 import ctaImage from '../assets/IMG-20250804-WA0412.jpg';
 
 const Home = () => {
