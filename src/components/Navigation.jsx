@@ -133,9 +133,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isOpen ? 'menu-open' : ''}`}>
       <div className="nav-container">
-        <div className="logo-wrapper">
+        <div className={`logo-wrapper ${isOpen ? 'menu-open' : ''}`}>
           <div className="nav-sun">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="18" fill="#D4956C" />
@@ -186,11 +186,6 @@ const Navigation = () => {
         </button>
 
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <div className="mobile-menu-header">
-            <h2>Donatello</h2>
-            <p>Montecatini Terme</p>
-          </div>
-
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
@@ -229,8 +224,12 @@ const Navigation = () => {
                 })}
               </svg>
             </div>
-            <Link to="/contact" className="quick-contact-link" onClick={closeMenu}>
-              Quick Contact
+            <div className="mobile-menu-branding">
+              <h2>Donatello</h2>
+              <p>Montecatini Terme</p>
+            </div>
+            <Link to="/contact" className="contact-link" onClick={closeMenu}>
+              Contact
             </Link>
           </div>
         </ul>

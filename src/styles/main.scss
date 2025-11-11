@@ -142,30 +142,17 @@ button {
 .page-wrapper {
   position: relative;
   width: 100%;
-
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    z-index: 9999;
-    pointer-events: none;
-    animation: whiteFadeOut 0.5s ease-out forwards;
-  }
 }
 
 .page-enter {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
 }
 
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 
 .page-exit {
@@ -175,16 +162,6 @@ button {
 
 .page-exit-active {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-10px);
   transition: opacity 300ms ease-in, transform 300ms ease-in;
-}
-
-// White fade-out overlay on page load
-@keyframes whiteFadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
