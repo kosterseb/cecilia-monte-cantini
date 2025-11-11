@@ -1,0 +1,174 @@
+@import '../styles/main.scss';
+
+.home-page {
+  min-height: 100vh;
+}
+
+// Hero Section
+.hero {
+  height: 80vh;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  
+  @media (max-width: $mobile) {
+    height: 60vh;
+    background-attachment: scroll;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  @include flex-center;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  padding: $spacing-md;
+  
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin-bottom: $spacing-sm;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    animation-delay: 0.2s;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    animation-delay: 0.4s;
+  }
+}
+
+// Intro Section
+.intro {
+  background: white;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  align-items: center;
+  
+  @media (max-width: $tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.intro-text {
+  h2 {
+    color: $dark-color;
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    color: $text-color;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.intro-image {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Location Section
+.location-section {
+  background: $primary-color;
+  
+  h2 {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  
+  @media (max-width: $mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.location-card {
+  background: white;
+  padding: $spacing-md;
+  border-radius: 4px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .location-icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-sm;
+  }
+  
+  h3 {
+    color: $dark-color;
+    font-size: 1.25rem;
+    margin-bottom: $spacing-xs;
+  }
+  
+  p {
+    color: $text-light;
+    font-size: 1rem;
+  }
+}
+
+.location-description {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: $text-color;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// CTA Section
+.cta-section {
+  background: white;
+  
+  h2 {
+    margin-bottom: $spacing-md;
+  }
+  
+  .cta-text {
+    font-size: 1.2rem;
+    color: $text-light;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
