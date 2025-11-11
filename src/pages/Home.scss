@@ -8,15 +8,16 @@
 
 // Hero Section
 .hero {
-  height: 80vh;
-  min-height: 500px;
+  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: relative;
-  
+
   @media (max-width: $mobile) {
-    height: 60vh;
+    height: 100vh;
+    min-height: 100vh;
     background-attachment: scroll;
   }
 }
