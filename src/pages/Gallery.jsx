@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import './Gallery.scss';
+import img1 from '../assets/IMG-20250804-WA0090.jpg';
+import img2 from '../assets/IMG-20250804-WA0094.jpg';
+import img3 from '../assets/IMG-20250804-WA0196.jpg';
+import img4 from '../assets/IMG-20250804-WA0201.jpg';
+import img5 from '../assets/IMG-20250804-WA0206.jpg';
+import img6 from '../assets/IMG-20250804-WA0208.jpg';
+import img7 from '../assets/IMG-20250804-WA0233.jpg';
+import img8 from '../assets/IMG-20250804-WA0405.jpg';
+import img9 from '../assets/IMG-20250804-WA0412.jpg';
+import img10 from '../assets/IMG-20250804-WA0413.jpg';
+import img11 from '../assets/IMG-20250804-WA0417.jpg';
+import img12 from '../assets/IMG-20250804-WA0418.jpg';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    // Using Picsum Photos for placeholder images (CORS-friendly)
     const galleryImages = [
-      'https://picsum.photos/800/600?random=1',
-      'https://picsum.photos/800/600?random=2',
-      'https://picsum.photos/800/600?random=3',
-      'https://picsum.photos/800/600?random=4',
-      'https://picsum.photos/800/600?random=5',
-      'https://picsum.photos/800/600?random=6',
-      'https://picsum.photos/800/600?random=7',
-      'https://picsum.photos/800/600?random=8',
-      'https://picsum.photos/800/600?random=9',
-      'https://picsum.photos/800/600?random=10',
-      'https://picsum.photos/800/600?random=11',
-      'https://picsum.photos/800/600?random=12',
+      img1, img2, img3, img4, img5, img6,
+      img7, img8, img9, img10, img11, img12
     ];
 
     setImages(galleryImages);

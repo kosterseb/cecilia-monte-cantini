@@ -1,8 +1,8 @@
 import './Home.scss';
+import heroImage from '../assets/IMG-20250804-WA0056.jpg';
+import introImage from '../assets/IMG-20250804-WA0229.jpg';
 
 const Home = () => {
-  // Using Picsum Photos for placeholder images (CORS-friendly alternative to Unsplash)
-  const heroImage = 'https://picsum.photos/1600/900';
 
   return (
     <div className="home-page">
@@ -72,7 +72,7 @@ const Home = () => {
             </div>
             <div className="intro-image">
               <img
-                src="https://picsum.photos/600/800"
+                src={introImage}
                 alt="Montecatini Terme"
               />
             </div>
