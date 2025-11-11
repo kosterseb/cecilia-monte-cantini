@@ -1,29 +1,13 @@
-import { useEffect, useState } from 'react';
 import './Home.scss';
 
 const Home = () => {
-  const [heroImage, setHeroImage] = useState('');
-
-  useEffect(() => {
-    // Fetch Unsplash image for hero
-    const fetchHeroImage = async () => {
-      try {
-        const response = await fetch(
-          'https://source.unsplash.com/1600x900/?tuscany,italy,architecture'
-        );
-        setHeroImage(response.url);
-      } catch (error) {
-        console.error('Error loading hero image:', error);
-      }
-    };
-
-    fetchHeroImage();
-  }, []);
+  // Using Picsum Photos for placeholder images (CORS-friendly alternative to Unsplash)
+  const heroImage = 'https://picsum.photos/1600/900';
 
   return (
     <div className="home-page">
-      <section 
-        className="hero" 
+      <section
+        className="hero"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="hero-overlay">
@@ -53,9 +37,9 @@ const Home = () => {
               </p>
             </div>
             <div className="intro-image">
-              <img 
-                src="https://source.unsplash.com/600x800/?montecatini,thermal-bath" 
-                alt="Montecatini Terme" 
+              <img
+                src="https://picsum.photos/600/800"
+                alt="Montecatini Terme"
               />
             </div>
           </div>

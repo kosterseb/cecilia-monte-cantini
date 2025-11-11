@@ -23,7 +23,13 @@ function App() {
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       {!showSplash && (
-        <Router basename={basename}>
+        <Router
+          basename={basename}
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true
+          }}
+        >
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />

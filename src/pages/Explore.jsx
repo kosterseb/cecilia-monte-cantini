@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './Explore.scss';
 
 const Explore = () => {
@@ -6,42 +5,42 @@ const Explore = () => {
     {
       title: 'Piazza del Popolo',
       description: 'This lively square sits at the heart of Montecatini Terme and is the ideal place to have breakfast and indulge in people-watching. The combination of arcades, cafés and passing life creates a vibrant urban space.',
-      image: 'https://source.unsplash.com/600x400/?italian-plaza,piazza'
+      image: 'https://picsum.photos/600/400?random=13'
     },
     {
       title: 'Terme Tettuccio (Thermal Baths)',
       description: 'Experience the historic thermal baths that have made Montecatini Terme famous. These elegant spa facilities offer wellness treatments in stunning Art Nouveau architecture.',
-      image: 'https://source.unsplash.com/600x400/?thermal-spa,luxury'
+      image: 'https://picsum.photos/600/400?random=14'
     },
     {
       title: 'Funicolare di Montecatini & Montecatini Alto',
       description: 'Take the historic funicular railway up to Montecatini Alto, the medieval hilltop village offering breathtaking views of the Tuscan countryside and charming narrow streets.',
-      image: 'https://source.unsplash.com/600x400/?funicular,cable-car'
+      image: 'https://picsum.photos/600/400?random=15'
     },
     {
       title: 'Basilica di Santa Maria Assunta',
       description: 'Built in the 1950s on the site of a 19th-century church, this basilica is noted for its architectural interest with its octagonal plan and travertine construction. It adds to the cultural and architectural depth of the town centre.',
-      image: 'https://source.unsplash.com/600x400/?italian-church,basilica'
+      image: 'https://picsum.photos/600/400?random=16'
     },
     {
       title: 'Grotta Maona',
       description: 'A fascinating subterranean experience: this karst cave near Montecatini Terme is 200m long and deep, featuring impressive stalactites and stalagmites. Perfect for a unique day-trip.',
-      image: 'https://source.unsplash.com/600x400/?cave,stalactite'
+      image: 'https://picsum.photos/600/400?random=17'
     },
     {
       title: 'Corso Giacomo Matteotti',
       description: 'The main shopping street lined with designer stores like Gucci and other high-quality boutiques. Perfect for retail therapy and experiencing Italian fashion.',
-      image: 'https://source.unsplash.com/600x400/?shopping-street,luxury-boutique'
+      image: 'https://picsum.photos/600/400?random=18'
     },
     {
       title: 'Teatro Verdi',
       description: 'A beautiful venue for culture and events, offering operas, concerts and other performances throughout the year. Experience authentic Italian cultural life.',
-      image: 'https://source.unsplash.com/600x400/?opera-house,theater'
+      image: 'https://picsum.photos/600/400?random=19'
     },
     {
       title: 'MO.C.A. Museum of Contemporary Art',
       description: 'A free-to-visit modern art museum showcasing Italian and international contemporary art. Perfect for art lovers and those interested in design and culture.',
-      image: 'https://source.unsplash.com/600x400/?contemporary-art,museum'
+      image: 'https://picsum.photos/600/400?random=20'
     }
   ];
 
