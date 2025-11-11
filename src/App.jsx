@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, createRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import SplashScreen from './components/SplashScreen';
@@ -12,15 +12,17 @@ import './styles/main.scss';
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const nodeRef = useRef(null);
 
   return (
     <TransitionGroup>
       <CSSTransition
         key={location.pathname}
+        nodeRef={nodeRef}
         classNames="page"
         timeout={400}
       >
-        <div className="page-wrapper">
+        <div ref={nodeRef} className="page-wrapper">
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
