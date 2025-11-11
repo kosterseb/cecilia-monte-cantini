@@ -46,6 +46,40 @@ const Explore = () => {
 
   return (
     <div className="explore-page">
+      {/* Decorative sun element */}
+      <div className="decorative-sun top-left">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="20" fill="#D4956C" opacity="0.25" />
+          {[...Array(12)].map((_, i) => {
+            const angle = (i * 30 * Math.PI) / 180;
+            const x1 = 50 + Math.cos(angle) * 25;
+            const y1 = 50 + Math.sin(angle) * 25;
+            const x2 = 50 + Math.cos(angle) * 38;
+            const y2 = 50 + Math.sin(angle) * 38;
+
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="#D4956C"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                opacity="0.25"
+              />
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* Decorative lines */}
+      <div className="decorative-lines">
+        <div className="line line-1"></div>
+        <div className="line line-2"></div>
+      </div>
+
       <section className="section">
         <div className="container">
           <h1 className="page-title text-center">Explore Montecatini Terme</h1>
@@ -65,27 +99,6 @@ const Explore = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section map-section">
-        <div className="container">
-          <h2 className="text-center">Find Us</h2>
-          <p className="text-center map-subtitle">
-            Viale Giacomo Puccini n.16, 51016 Montecatini Terme, Provincia: Pistoia, Italy
-          </p>
-          <div className="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2875.486939399826!2d10.770839!3d43.883333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a7f6b4b4b4b4b%3A0x4b4b4b4b4b4b4b4b!2sViale%20Giacomo%20Puccini%2C%2016%2C%2051016%20Montecatini%20Terme%20PT%2C%20Italy!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Hotel Donatello Location"
-            ></iframe>
           </div>
         </div>
       </section>

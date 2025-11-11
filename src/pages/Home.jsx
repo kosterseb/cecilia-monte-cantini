@@ -6,6 +6,40 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      {/* Decorative sun element */}
+      <div className="decorative-sun left-bottom">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="20" fill="#D4956C" opacity="0.2" />
+          {[...Array(12)].map((_, i) => {
+            const angle = (i * 30 * Math.PI) / 180;
+            const x1 = 50 + Math.cos(angle) * 25;
+            const y1 = 50 + Math.sin(angle) * 25;
+            const x2 = 50 + Math.cos(angle) * 38;
+            const y2 = 50 + Math.sin(angle) * 38;
+
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="#D4956C"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                opacity="0.2"
+              />
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* Decorative lines */}
+      <div className="decorative-lines">
+        <div className="line line-1"></div>
+        <div className="line line-2"></div>
+      </div>
+
       <section
         className="hero"
         style={{ backgroundImage: `url(${heroImage})` }}

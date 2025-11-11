@@ -2,6 +2,8 @@
 
 .home-page {
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 // Hero Section
@@ -170,5 +172,81 @@
     color: $text-light;
     max-width: 700px;
     margin: 0 auto;
+  }
+}
+
+// Decorative sun animation
+.decorative-sun {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  opacity: 0.5;
+  animation: rotateGently 25s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+
+  &.left-bottom {
+    bottom: 100px;
+    left: -50px;
+  }
+
+  @media (max-width: $tablet) {
+    width: 130px;
+    height: 130px;
+    left: -65px;
+  }
+}
+
+// Decorative lines
+.decorative-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+
+  .line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, $accent-color, transparent);
+    opacity: 0.08;
+    animation: floatLine 10s ease-in-out infinite;
+
+    &.line-1 {
+      width: 400px;
+      height: 2px;
+      top: 30%;
+      left: -400px;
+      animation-delay: 0s;
+    }
+
+    &.line-2 {
+      width: 300px;
+      height: 1.5px;
+      top: 70%;
+      left: -300px;
+      animation-delay: 3s;
+    }
+  }
+}
+
+// Animations
+@keyframes rotateGently {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatLine {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(calc(100vw + 400px));
   }
 }

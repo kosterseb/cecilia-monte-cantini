@@ -3,6 +3,8 @@
 .explore-page {
   min-height: 100vh;
   padding-top: $spacing-md;
+  position: relative;
+  overflow: hidden;
 }
 
 .attractions-grid {
@@ -84,8 +86,105 @@
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  
+
   iframe {
     display: block;
+  }
+}
+
+.page-title {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.page-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: $text-light;
+  animation: fadeIn 0.8s ease-out 0.2s backwards;
+}
+
+// Decorative sun animation
+.decorative-sun {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  opacity: 0.5;
+  animation: rotateGently 28s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+
+  &.top-left {
+    top: 80px;
+    left: -40px;
+  }
+
+  @media (max-width: $tablet) {
+    width: 120px;
+    height: 120px;
+    left: -60px;
+  }
+}
+
+// Decorative lines
+.decorative-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+
+  .line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, $accent-color, transparent);
+    opacity: 0.1;
+    animation: floatLine 12s ease-in-out infinite;
+
+    &.line-1 {
+      width: 350px;
+      height: 1.5px;
+      top: 25%;
+      left: -350px;
+      animation-delay: 1s;
+    }
+
+    &.line-2 {
+      width: 250px;
+      height: 2px;
+      top: 65%;
+      left: -250px;
+      animation-delay: 5s;
+    }
+  }
+}
+
+// Animations
+@keyframes rotateGently {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatLine {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(calc(100vw + 350px));
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

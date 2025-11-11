@@ -8,9 +8,9 @@ const Navigation = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/gallery', label: 'Gallery' },
     { path: '/explore', label: 'Explore' },
-    { path: '/guestbook', label: 'Guestbook' }
+    { path: '/guestbook', label: 'Guestbook' },
+    { path: '/contact', label: 'Contact' }
   ];
 
   const toggleMenu = () => {
