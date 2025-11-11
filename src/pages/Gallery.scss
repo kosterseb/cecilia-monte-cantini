@@ -144,8 +144,8 @@
     animation: zoomIn 0.3s ease;
 
     @media (max-width: $mobile) {
-      max-width: calc(100vw - 100px);
-      max-height: calc(100vh - 140px);
+      max-width: calc(100vw - 120px);
+      max-height: calc(100vh - 150px);
       object-fit: contain;
     }
   }
