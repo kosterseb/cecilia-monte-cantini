@@ -6,20 +6,20 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    // Generate Unsplash images for the gallery
+    // Using Picsum Photos for placeholder images (CORS-friendly)
     const galleryImages = [
-      'https://source.unsplash.com/800x600/?tuscany,landscape',
-      'https://source.unsplash.com/800x600/?montecatini,italy',
-      'https://source.unsplash.com/800x600/?thermal-spa,italy',
-      'https://source.unsplash.com/800x600/?italian-architecture',
-      'https://source.unsplash.com/800x600/?tuscany,sunset',
-      'https://source.unsplash.com/800x600/?italian-garden',
-      'https://source.unsplash.com/800x600/?florence,italy',
-      'https://source.unsplash.com/800x600/?tuscan-countryside',
-      'https://source.unsplash.com/800x600/?italian-plaza',
-      'https://source.unsplash.com/800x600/?tuscany,villa',
-      'https://source.unsplash.com/800x600/?lucca,italy',
-      'https://source.unsplash.com/800x600/?pisa,italy',
+      'https://picsum.photos/800/600?random=1',
+      'https://picsum.photos/800/600?random=2',
+      'https://picsum.photos/800/600?random=3',
+      'https://picsum.photos/800/600?random=4',
+      'https://picsum.photos/800/600?random=5',
+      'https://picsum.photos/800/600?random=6',
+      'https://picsum.photos/800/600?random=7',
+      'https://picsum.photos/800/600?random=8',
+      'https://picsum.photos/800/600?random=9',
+      'https://picsum.photos/800/600?random=10',
+      'https://picsum.photos/800/600?random=11',
+      'https://picsum.photos/800/600?random=12',
     ];
 
     setImages(galleryImages);
