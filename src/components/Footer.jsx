@@ -27,16 +27,28 @@ const Footer = () => {
         
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Hotel Donatello. Montecatini Terme, Tuscany.</p>
-          <p className="photographer-credit">
-            Photography by{' '}
-            <a
-              href="https://www.instagram.com/stefreynaert"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Stefanie Reynaert
-            </a>
-          </p>
+          <div className="footer-credits">
+            <p className="photographer-credit">
+              Photography by{' '}
+              <a
+                href="https://www.instagram.com/stefreynaert"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Stefanie Reynaert
+              </a>
+            </p>
+            <p className="developer-credit">
+              Website by{' '}
+              <a
+                href="https://sebastiankoster.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sebastian Køster
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
