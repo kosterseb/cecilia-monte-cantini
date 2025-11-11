@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Gallery.scss';
+import bgImage from '../assets/IMG-20250804-WA0201.jpg';
 
 // Import hotel gallery images
 import img1 from '../assets/gallery/IMG_8714.jpeg';
@@ -69,6 +70,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page">
+      <div className="page-background" style={{ backgroundImage: `url(${bgImage})` }}></div>
       <section className="section">
         <div className="container">
           <h1 className="page-title text-center">Gallery</h1>

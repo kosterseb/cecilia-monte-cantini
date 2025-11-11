@@ -3,7 +3,20 @@
 .gallery-page {
   min-height: 100vh;
   padding-top: $spacing-md;
-  background: $light-color;
+  position: relative;
+}
+
+.page-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.15;
 }
 
 .page-title {
@@ -111,13 +124,20 @@
   z-index: 2000;
   cursor: pointer;
   animation: fadeIn 0.3s ease;
-  
+  padding: $spacing-md;
+
   img {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
     cursor: default;
     animation: zoomIn 0.3s ease;
+
+    @media (max-width: $mobile) {
+      max-width: 85%;
+      max-height: 80vh;
+      margin: auto;
+    }
   }
 }
 
@@ -133,9 +153,17 @@
   font-size: 2rem;
   cursor: pointer;
   transition: background 0.3s ease;
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: $mobile) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    top: $spacing-xs;
+    right: $spacing-xs;
   }
 }
 
@@ -159,12 +187,20 @@
   
   &.lightbox-prev {
     left: $spacing-md;
+
+    @media (max-width: $mobile) {
+      left: $spacing-xs;
+    }
   }
-  
+
   &.lightbox-next {
     right: $spacing-md;
+
+    @media (max-width: $mobile) {
+      right: $spacing-xs;
+    }
   }
-  
+
   @media (max-width: $mobile) {
     width: 45px;
     height: 45px;

@@ -155,8 +155,9 @@
     transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 1002;
     justify-content: flex-start;
-    padding-top: 75px;
+    padding-top: 50px;
     align-items: center;
+    gap: $spacing-xs;
     transform: translateX(100%);
     opacity: 0;
 
@@ -183,7 +184,7 @@
       @media (max-width: $mobile) {
         font-size: 1.4rem;
         display: block;
-        padding: $spacing-sm 0;
+        padding: $spacing-xs 0;
         font-weight: 400;
       }
 
