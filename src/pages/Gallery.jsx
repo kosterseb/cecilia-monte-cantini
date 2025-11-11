@@ -1,25 +1,39 @@
 import { useEffect, useState } from 'react';
 import './Gallery.scss';
+import bgImage from '../assets/IMG-20250804-WA0201.jpg';
+
+// Import hotel gallery images
+import img1 from '../assets/gallery/IMG_8714.jpeg';
+import img2 from '../assets/gallery/IMG_8768.jpeg';
+import img3 from '../assets/gallery/IMG_8838.jpeg';
+import img4 from '../assets/gallery/IMG_8846.jpeg';
+import img5 from '../assets/gallery/IMG_9696.jpeg';
+import img6 from '../assets/gallery/IMG_9723.jpeg';
+import img7 from '../assets/gallery/IMG_9752.jpeg';
+import img8 from '../assets/gallery/IMG_9753.jpeg';
+import img9 from '../assets/gallery/IMG_9762.jpeg';
+import img10 from '../assets/gallery/IMG_9767.jpeg';
+import img11 from '../assets/gallery/IMG_9769.jpeg';
+import img12 from '../assets/gallery/IMG_9770.jpeg';
+import img13 from '../assets/gallery/IMG_9772.jpeg';
+import img14 from '../assets/gallery/IMG_9778.jpeg';
+import img15 from '../assets/gallery/IMG_9780.jpeg';
+import img16 from '../assets/gallery/IMG_9783.jpeg';
+import img17 from '../assets/gallery/IMG_9785.jpeg';
+import img18 from '../assets/gallery/IMG_9786.jpeg';
+import img19 from '../assets/gallery/IMG_9787.jpeg';
+import img20 from '../assets/gallery/IMG_9799.jpeg';
+import img21 from '../assets/gallery/IMG_9802.jpeg';
+import img22 from '../assets/gallery/IMG_9889.jpeg';
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    // Using Picsum Photos for placeholder images (CORS-friendly)
     const galleryImages = [
-      'https://picsum.photos/800/600?random=1',
-      'https://picsum.photos/800/600?random=2',
-      'https://picsum.photos/800/600?random=3',
-      'https://picsum.photos/800/600?random=4',
-      'https://picsum.photos/800/600?random=5',
-      'https://picsum.photos/800/600?random=6',
-      'https://picsum.photos/800/600?random=7',
-      'https://picsum.photos/800/600?random=8',
-      'https://picsum.photos/800/600?random=9',
-      'https://picsum.photos/800/600?random=10',
-      'https://picsum.photos/800/600?random=11',
-      'https://picsum.photos/800/600?random=12',
+      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
+      img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22
     ];
 
     setImages(galleryImages);
@@ -56,11 +70,12 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page">
+      <div className="page-background" style={{ backgroundImage: `url(${bgImage})` }}></div>
       <section className="section">
         <div className="container">
           <h1 className="page-title text-center">Gallery</h1>
           <p className="page-subtitle text-center">
-            Explore the beauty of Montecatini Terme and the surrounding Tuscan region
+            Discover Hotel Donatello's elegant accommodations and welcoming atmosphere
           </p>
 
           <div className="gallery-grid">

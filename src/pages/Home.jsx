@@ -1,8 +1,9 @@
 import './Home.scss';
+import heroImage from '../assets/IMG-20250804-WA0412.jpg';
+import introImage from '../assets/IMG-20250804-WA0417.jpg';
+import ctaImage from '../assets/IMG-20250804-WA0418.jpg';
 
 const Home = () => {
-  // Using Picsum Photos for placeholder images (CORS-friendly alternative to Unsplash)
-  const heroImage = 'https://picsum.photos/1600/900';
 
   return (
     <div className="home-page">
@@ -72,7 +73,7 @@ const Home = () => {
             </div>
             <div className="intro-image">
               <img
-                src="https://picsum.photos/600/800"
+                src={introImage}
                 alt="Montecatini Terme"
               />
             </div>
@@ -141,12 +142,17 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="section cta-section">
-        <div className="container text-center">
-          <h2>Experience Tuscany</h2>
-          <p className="cta-text">
-            Discover the perfect blend of historic elegance and modern comfort in the heart of Tuscany.
-          </p>
+      <section
+        className="section cta-section"
+        style={{ backgroundImage: `url(${ctaImage})` }}
+      >
+        <div className="cta-overlay">
+          <div className="container text-center">
+            <h2>Experience Tuscany</h2>
+            <p className="cta-text">
+              Discover the perfect blend of historic elegance and modern comfort in the heart of Tuscany.
+            </p>
+          </div>
         </div>
       </section>
     </div>

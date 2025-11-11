@@ -8,7 +8,11 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   padding: $spacing-sm 0;
-  overflow: hidden;
+  overflow: visible;
+
+  @media (min-width: calc($mobile + 1px)) {
+    overflow: hidden;
+  }
 }
 
 .nav-container {
@@ -25,28 +29,37 @@
   gap: $spacing-sm;
   position: relative;
   z-index: 10;
+  transition: opacity 0.3s ease;
+
+  @media (max-width: $mobile) {
+    &.menu-open {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
 }
 
 .nav-sun {
   width: 135px;
   height: 135px;
-  animation: rotateGently 20s linear infinite;
   flex-shrink: 0;
   position: absolute;
   left: -67px;
-  top: calc(50% - 50px);
-  transform: translateY(-50%);
+  top: 50%;
+  margin-top: -67.5px; // Half of height to center
+  z-index: 0; // Behind the text
 
   @media (max-width: $mobile) {
     width: 105px;
     height: 105px;
     left: -52px;
-    top: calc(50% - 35px);
+    margin-top: -52.5px; // Half of height to center
   }
 
   svg {
     width: 100%;
     height: 100%;
+    animation: rotateGently 20s linear infinite;
   }
 }
 
@@ -55,6 +68,7 @@
   flex-direction: column;
   gap: 0.25rem;
   position: relative;
+  z-index: 1; // In front of the sun
 
   &:hover {
     opacity: 0.8;
@@ -125,26 +139,40 @@
   display: flex;
   list-style: none;
   gap: $spacing-md;
-  
+
   @media (max-width: $mobile) {
     position: fixed;
     top: 0;
-    right: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 100vh;
-    width: 70%;
-    max-width: 300px;
+    width: 100vw;
     background: $light-color;
     flex-direction: column;
-    padding: $spacing-xl $spacing-md;
+    padding: $spacing-xl $spacing-lg;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1002;
+    justify-content: flex-start;
+    padding-top: 50px;
+    align-items: center;
+    gap: $spacing-xs;
+    transform: translateX(100%);
+    opacity: 0;
+
     &.active {
-      right: 0;
+      transform: translateX(0);
+      opacity: 1;
     }
   }
-  
+
   li {
+    @media (max-width: $mobile) {
+      text-align: center;
+      width: 100%;
+    }
+
     a {
       font-size: 1rem;
       color: $text-color;
@@ -152,13 +180,14 @@
       letter-spacing: 0.05em;
       padding: $spacing-xs 0;
       position: relative;
-      
+
       @media (max-width: $mobile) {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
         display: block;
-        padding: $spacing-sm 0;
+        padding: $spacing-xs 0;
+        font-weight: 400;
       }
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -168,16 +197,97 @@
         height: 1px;
         background: $accent-color;
         transition: width 0.3s ease;
+
+        @media (max-width: $mobile) {
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
-      
+
       &:hover::after,
       &.active::after {
         width: 100%;
+
+        @media (max-width: $mobile) {
+          width: 50%;
+        }
       }
-      
+
       &.active {
         color: $accent-color;
       }
+    }
+  }
+}
+
+.mobile-menu-footer {
+  display: none;
+
+  @media (max-width: $mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    position: absolute;
+    bottom: $spacing-lg;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+}
+
+.mobile-sun {
+  @media (max-width: $mobile) {
+    width: 70px;
+    height: 70px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      animation: rotateGently 20s linear infinite;
+    }
+  }
+}
+
+.mobile-menu-branding {
+  display: none;
+
+  @media (max-width: $mobile) {
+    display: block;
+    text-align: center;
+
+    h2 {
+      font-family: $font-heading;
+      font-size: 1.5rem;
+      color: $dark-color;
+      margin-bottom: $spacing-xs;
+      letter-spacing: 0.05em;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: $text-light;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.contact-link {
+  @media (max-width: $mobile) {
+    font-size: 1rem;
+    color: $accent-color;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: $spacing-sm $spacing-lg;
+    border: 2px solid $accent-color;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-top: $spacing-xs;
+
+    &:hover {
+      background: $accent-color;
+      color: white;
     }
   }
 }
@@ -190,12 +300,13 @@
   border: none;
   cursor: pointer;
   padding: $spacing-xs;
-  z-index: 1001;
-  
+  z-index: 1003;
+  position: relative;
+
   @media (max-width: $mobile) {
     display: flex;
   }
-  
+
   span {
     width: 25px;
     height: 2px;
@@ -203,16 +314,20 @@
     transition: all 0.3s ease;
     transform-origin: center;
   }
-  
+
   &.active {
+    position: fixed;
+    right: $spacing-md;
+    top: $spacing-md;
+
     span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
-    
+
     span:nth-child(2) {
       opacity: 0;
     }
-    
+
     span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }

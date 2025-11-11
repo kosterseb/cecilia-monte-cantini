@@ -10,6 +10,7 @@ const Navigation = () => {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/explore', label: 'Explore' },
+    { path: '/gallery', label: 'Gallery' },
     { path: '/guestbook', label: 'Guestbook' },
     { path: '/contact', label: 'Contact' }
   ];
@@ -133,9 +134,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isOpen ? 'menu-open' : ''}`}>
       <div className="nav-container">
-        <div className="logo-wrapper">
+        <div className={`logo-wrapper ${isOpen ? 'menu-open' : ''}`}>
           <div className="nav-sun">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="18" fill="#D4956C" />
@@ -197,6 +198,41 @@ const Navigation = () => {
               </Link>
             </li>
           ))}
+
+          <div className="mobile-menu-footer">
+            <div className="mobile-sun">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="18" fill="#D4956C" />
+                {[...Array(12)].map((_, i) => {
+                  const angle = (i * 30 * Math.PI) / 180;
+                  const x1 = 50 + Math.cos(angle) * 22;
+                  const y1 = 50 + Math.sin(angle) * 22;
+                  const x2 = 50 + Math.cos(angle) * 32;
+                  const y2 = 50 + Math.sin(angle) * 32;
+
+                  return (
+                    <line
+                      key={i}
+                      x1={x1}
+                      y1={y1}
+                      x2={x2}
+                      y2={y2}
+                      stroke="#D4956C"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+            <div className="mobile-menu-branding">
+              <h2>Donatello</h2>
+              <p>Montecatini Terme</p>
+            </div>
+            <Link to="/contact" className="contact-link" onClick={closeMenu}>
+              Contact
+            </Link>
+          </div>
         </ul>
       </div>
     </nav>

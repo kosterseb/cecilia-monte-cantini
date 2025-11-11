@@ -1,8 +1,10 @@
 import './Contact.scss';
+import bgImage from '../assets/IMG-20250804-WA0208.jpg';
 
 const Contact = () => {
   return (
     <div className="contact-page">
+      <div className="page-background" style={{ backgroundImage: `url(${bgImage})` }}></div>
       {/* Decorative sun element */}
       <div className="decorative-sun top-right">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

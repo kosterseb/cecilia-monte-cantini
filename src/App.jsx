@@ -1,4 +1,4 @@
-import { useState, useRef, createRef } from 'react';
+import { useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import SplashScreen from './components/SplashScreen';
@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Explore from './pages/Explore';
+import Gallery from './pages/Gallery';
 import Guestbook from './pages/Guestbook';
 import './styles/main.scss';
 
@@ -20,12 +21,14 @@ function AnimatedRoutes() {
         key={location.pathname}
         nodeRef={nodeRef}
         classNames="page"
-        timeout={400}
+        timeout={300}
+        unmountOnExit
       >
         <div ref={nodeRef} className="page-wrapper">
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/guestbook" element={<Guestbook />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
