@@ -125,18 +125,24 @@
   cursor: pointer;
   animation: fadeIn 0.3s ease;
   padding: $spacing-md;
+  overflow: hidden;
+
+  @media (max-width: $mobile) {
+    padding: 60px 10px 40px;
+  }
 
   img {
     max-width: 90%;
     max-height: 90vh;
+    width: auto;
+    height: auto;
     object-fit: contain;
     cursor: default;
     animation: zoomIn 0.3s ease;
 
     @media (max-width: $mobile) {
-      max-width: 85%;
-      max-height: 80vh;
-      margin: auto;
+      max-width: calc(100vw - 20px);
+      max-height: calc(100vh - 120px);
     }
   }
 }
@@ -216,6 +222,11 @@
   color: white;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
+
+  @media (max-width: $mobile) {
+    bottom: $spacing-sm;
+    font-size: 0.9rem;
+  }
 }
 
 @keyframes zoomIn {
