@@ -20,7 +20,8 @@ function AnimatedRoutes() {
         key={location.pathname}
         nodeRef={nodeRef}
         classNames="page"
-        timeout={400}
+        timeout={300}
+        unmountOnExit
       >
         <div ref={nodeRef} className="page-wrapper">
           <Routes location={location}>
