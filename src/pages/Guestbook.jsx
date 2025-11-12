@@ -19,7 +19,7 @@ const Guestbook = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Load entries from Firestore on mount
+  // Load entries from Firestore on mount !
   useEffect(() => {
     fetchEntries();
   }, []);
