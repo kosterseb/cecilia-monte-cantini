@@ -118,6 +118,29 @@
     text-align: center;
     animation: fadeIn 0.3s ease;
   }
+
+  .error-message {
+    margin-top: $spacing-md;
+    padding: $spacing-sm;
+    background: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+}
+
+.auth-info {
+  color: $text-light;
+  font-size: 0.95rem;
+  margin-bottom: $spacing-md;
+  line-height: 1.6;
+}
+
+.guest-code-input {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 // Entries Section
