@@ -198,22 +198,51 @@
 .entry-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
   margin-bottom: $spacing-sm;
-  flex-wrap: wrap;
-  gap: $spacing-xs;
-  
+  gap: $spacing-sm;
+
   h3 {
     color: $dark-color;
     font-size: 1.25rem;
     margin: 0;
   }
-  
+
   .entry-location {
     color: $text-light;
     font-size: 0.9rem;
     font-style: italic;
   }
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: $spacing-xs;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+.admin-badge {
+  background: #fff3cd;
+  color: #856404;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: $spacing-md;
+  border: 1px solid #ffeaa7;
 }
 
 .entry-message {
