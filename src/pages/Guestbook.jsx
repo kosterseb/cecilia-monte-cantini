@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
 import './Guestbook.scss';
 import bgImage from '../assets/IMG-20250804-WA0206.jpg';
-<<<<<<< HEAD
-import { collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
-import { signInAnonymously } from 'firebase/auth';
-import { db, auth } from '../utils/firebaseConfig';
-=======
 import { collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import { signInAnonymously } from 'firebase/auth';
 import { db, auth, GUEST_CODE, ADMIN_CODE } from '../utils/firebaseConfig';
->>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
 
 const Guestbook = () => {
   const [entries, setEntries] = useState([]);
@@ -20,20 +14,11 @@ const Guestbook = () => {
   });
   const [guestCode, setGuestCode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-<<<<<<< HEAD
-=======
   const [isAdmin, setIsAdmin] = useState(false);
->>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-<<<<<<< HEAD
-  // The guest code - you can change this to any code you want
-  const VALID_GUEST_CODE = 'DONATELLO2025';
-
-=======
->>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   // Load entries from Firestore on mount
   useEffect(() => {
     fetchEntries();
@@ -63,12 +48,6 @@ const Guestbook = () => {
     setError('');
     setLoading(true);
 
-<<<<<<< HEAD
-    if (guestCode.trim().toUpperCase() === VALID_GUEST_CODE) {
-      try {
-        await signInAnonymously(auth);
-        setIsAuthenticated(true);
-=======
     const enteredCode = guestCode.trim().toUpperCase();
 
     if (enteredCode === ADMIN_CODE) {
@@ -86,7 +65,6 @@ const Guestbook = () => {
         await signInAnonymously(auth);
         setIsAuthenticated(true);
         setIsAdmin(false);
->>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
         setError('');
       } catch (error) {
         console.error('Authentication error:', error);
@@ -137,8 +115,6 @@ const Guestbook = () => {
       setError('Failed to submit your message. Please try again.');
     }
     setLoading(false);
-<<<<<<< HEAD
-=======
   };
 
   const handleDelete = async (entryId) => {
@@ -158,7 +134,6 @@ const Guestbook = () => {
       console.error('Error deleting entry:', error);
       setError('Failed to delete entry. Please try again.');
     }
->>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   };
 
   return (
