@@ -22,5 +22,9 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 // You can export other services like getStorage(), getFunctions(), etc. as needed
 
+// Guest and Admin codes for guestbook access
+export const GUEST_CODE = 'DONATELLO2025';
+export const ADMIN_CODE = 'ADMIN2025DONATELLO';
+
 // Optional: You can also export the app instance itself if needed
 export default app;
