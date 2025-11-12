@@ -19,7 +19,7 @@ const Guestbook = () => {
   const [loading, setLoading] = useState(false);
 
   // The guest code - you can change this to any code you want
-  const VALID_GUEST_CODE = 'DONATELLO2024';
+  const VALID_GUEST_CODE = 'DONATELLO2025';
 
   // Load entries from Firestore on mount
   useEffect(() => {
