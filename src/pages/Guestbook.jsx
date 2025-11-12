@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './Guestbook.scss';
 import bgImage from '../assets/IMG-20250804-WA0206.jpg';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 import { signInAnonymously } from 'firebase/auth';
+import { db, auth } from '../utils/firebaseConfig';
 
 const Guestbook = () => {
   const [entries, setEntries] = useState([]);
@@ -11,15 +12,58 @@ const Guestbook = () => {
     location: '',
     message: ''
   });
+  const [guestCode, setGuestCode] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Load entries from localStorage on mount
+  // The guest code - you can change this to any code you want
+  const VALID_GUEST_CODE = 'DONATELLO2024';
+
+  // Load entries from Firestore on mount
   useEffect(() => {
-    const savedEntries = localStorage.getItem('guestbookEntries');
-    if (savedEntries) {
-      setEntries(JSON.parse(savedEntries));
-    }
+    fetchEntries();
   }, []);
+
+  const fetchEntries = async () => {
+    try {
+      const q = query(collection(db, 'guestbook'), orderBy('createdAt', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const fetchedEntries = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        date: doc.data().createdAt?.toDate().toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        })
+      }));
+      setEntries(fetchedEntries);
+    } catch (error) {
+      console.error('Error fetching entries:', error);
+    }
+  };
+
+  const handleCodeSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    if (guestCode.trim().toUpperCase() === VALID_GUEST_CODE) {
+      try {
+        await signInAnonymously(auth);
+        setIsAuthenticated(true);
+        setError('');
+      } catch (error) {
+        console.error('Authentication error:', error);
+        setError('Authentication failed. Please try again.');
+      }
+    } else {
+      setError('Invalid guest code. Please check with the hotel reception.');
+    }
+    setLoading(false);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,32 +73,37 @@ const Guestbook = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const newEntry = {
-      ...formData,
-      date: new Date().toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }),
-      id: Date.now()
-    };
+    setError('');
+    setLoading(true);
 
-    const updatedEntries = [newEntry, ...entries];
-    setEntries(updatedEntries);
-    localStorage.setItem('guestbookEntries', JSON.stringify(updatedEntries));
+    try {
+      const newEntry = {
+        ...formData,
+        createdAt: Timestamp.now(),
+        userId: auth.currentUser?.uid || 'anonymous'
+      };
 
-    // Reset form
-    setFormData({
-      name: '',
-      location: '',
-      message: ''
-    });
+      await addDoc(collection(db, 'guestbook'), newEntry);
 
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+      // Reset form
+      setFormData({
+        name: '',
+        location: '',
+        message: ''
+      });
+
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+
+      // Refresh entries
+      await fetchEntries();
+    } catch (error) {
+      console.error('Error adding entry:', error);
+      setError('Failed to submit your message. Please try again.');
+    }
+    setLoading(false);
   };
 
   return (
@@ -69,57 +118,99 @@ const Guestbook = () => {
 
           <div className="guestbook-content">
             <div className="guestbook-form-container">
-              <h2>Leave a Message</h2>
-              <form onSubmit={handleSubmit} className="guestbook-form">
-                <div className="form-group">
-                  <label htmlFor="name">Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your name"
-                  />
-                </div>
+              {!isAuthenticated ? (
+                <>
+                  <h2>Guest Access</h2>
+                  <p className="auth-info">
+                    Please enter the guest code provided by Hotel Donatello to leave a review.
+                  </p>
+                  <form onSubmit={handleCodeSubmit} className="guestbook-form">
+                    <div className="form-group">
+                      <label htmlFor="guestCode">Guest Code *</label>
+                      <input
+                        type="text"
+                        id="guestCode"
+                        name="guestCode"
+                        value={guestCode}
+                        onChange={(e) => setGuestCode(e.target.value)}
+                        required
+                        placeholder="Enter your guest code"
+                        className="guest-code-input"
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="location">Location *</label>
-                  <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    required
-                    placeholder="Where are you from?"
-                  />
-                </div>
+                    {error && (
+                      <div className="error-message">
+                        {error}
+                      </div>
+                    )}
 
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Share your thoughts about Montecatini Terme..."
-                    rows="5"
-                  ></textarea>
-                </div>
+                    <button type="submit" className="submit-btn" disabled={loading}>
+                      {loading ? 'Verifying...' : 'Verify Code'}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <h2>Leave a Message</h2>
+                  <form onSubmit={handleSubmit} className="guestbook-form">
+                    <div className="form-group">
+                      <label htmlFor="name">Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your name"
+                      />
+                    </div>
 
-                <button type="submit" className="submit-btn">
-                  Submit Message
-                </button>
+                    <div className="form-group">
+                      <label htmlFor="location">Location *</label>
+                      <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        required
+                        placeholder="Where are you from?"
+                      />
+                    </div>
 
-                {submitted && (
-                  <div className="success-message">
-                    Thank you for your message! ✓
-                  </div>
-                )}
-              </form>
+                    <div className="form-group">
+                      <label htmlFor="message">Message *</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder="Share your thoughts about your stay at Hotel Donatello..."
+                        rows="5"
+                      ></textarea>
+                    </div>
+
+                    {error && (
+                      <div className="error-message">
+                        {error}
+                      </div>
+                    )}
+
+                    <button type="submit" className="submit-btn" disabled={loading}>
+                      {loading ? 'Submitting...' : 'Submit Message'}
+                    </button>
+
+                    {submitted && (
+                      <div className="success-message">
+                        Thank you for your message! ✓
+                      </div>
+                    )}
+                  </form>
+                </>
+              )}
             </div>
 
             <div className="guestbook-entries">
