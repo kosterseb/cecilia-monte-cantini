@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import './Guestbook.scss';
 import bgImage from '../assets/IMG-20250804-WA0206.jpg';
+<<<<<<< HEAD
 import { collection, addDoc, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 import { signInAnonymously } from 'firebase/auth';
 import { db, auth } from '../utils/firebaseConfig';
+=======
+import { collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, Timestamp } from 'firebase/firestore';
+import { signInAnonymously } from 'firebase/auth';
+import { db, auth, GUEST_CODE, ADMIN_CODE } from '../utils/firebaseConfig';
+>>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
 
 const Guestbook = () => {
   const [entries, setEntries] = useState([]);
@@ -14,13 +20,20 @@ const Guestbook = () => {
   });
   const [guestCode, setGuestCode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+<<<<<<< HEAD
+=======
+  const [isAdmin, setIsAdmin] = useState(false);
+>>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+<<<<<<< HEAD
   // The guest code - you can change this to any code you want
   const VALID_GUEST_CODE = 'DONATELLO2025';
 
+=======
+>>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   // Load entries from Firestore on mount
   useEffect(() => {
     fetchEntries();
@@ -50,10 +63,30 @@ const Guestbook = () => {
     setError('');
     setLoading(true);
 
+<<<<<<< HEAD
     if (guestCode.trim().toUpperCase() === VALID_GUEST_CODE) {
       try {
         await signInAnonymously(auth);
         setIsAuthenticated(true);
+=======
+    const enteredCode = guestCode.trim().toUpperCase();
+
+    if (enteredCode === ADMIN_CODE) {
+      try {
+        await signInAnonymously(auth);
+        setIsAuthenticated(true);
+        setIsAdmin(true);
+        setError('');
+      } catch (error) {
+        console.error('Authentication error:', error);
+        setError('Authentication failed. Please try again.');
+      }
+    } else if (enteredCode === GUEST_CODE) {
+      try {
+        await signInAnonymously(auth);
+        setIsAuthenticated(true);
+        setIsAdmin(false);
+>>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
         setError('');
       } catch (error) {
         console.error('Authentication error:', error);
@@ -104,6 +137,28 @@ const Guestbook = () => {
       setError('Failed to submit your message. Please try again.');
     }
     setLoading(false);
+<<<<<<< HEAD
+=======
+  };
+
+  const handleDelete = async (entryId) => {
+    if (!isAdmin) {
+      setError('You do not have permission to delete entries.');
+      return;
+    }
+
+    if (!window.confirm('Are you sure you want to delete this entry?')) {
+      return;
+    }
+
+    try {
+      await deleteDoc(doc(db, 'guestbook', entryId));
+      await fetchEntries();
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+      setError('Failed to delete entry. Please try again.');
+    }
+>>>>>>> claude/simple-application-setup-011CV1ynySDcEKhUm2eooZ7C
   };
 
   return (
@@ -215,6 +270,11 @@ const Guestbook = () => {
 
             <div className="guestbook-entries">
               <h2>Guest Messages</h2>
+              {isAdmin && (
+                <p className="admin-badge">
+                  🔑 Admin Mode - You can delete entries
+                </p>
+              )}
               {entries.length === 0 ? (
                 <p className="no-entries">Be the first to leave a message!</p>
               ) : (
@@ -222,8 +282,19 @@ const Guestbook = () => {
                   {entries.map((entry) => (
                     <div key={entry.id} className="entry-card">
                       <div className="entry-header">
-                        <h3>{entry.name}</h3>
-                        <span className="entry-location">{entry.location}</span>
+                        <div>
+                          <h3>{entry.name}</h3>
+                          <span className="entry-location">{entry.location}</span>
+                        </div>
+                        {isAdmin && (
+                          <button
+                            className="delete-btn"
+                            onClick={() => handleDelete(entry.id)}
+                            title="Delete entry"
+                          >
+                            🗑️
+                          </button>
+                        )}
                       </div>
                       <p className="entry-message">{entry.message}</p>
                       <span className="entry-date">{entry.date}</span>
