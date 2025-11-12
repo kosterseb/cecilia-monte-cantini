@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Guestbook.scss';
 import bgImage from '../assets/IMG-20250804-WA0206.jpg';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { signInAnonymously } from 'firebase/auth';
 
 const Guestbook = () => {
   const [entries, setEntries] = useState([]);
