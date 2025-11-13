@@ -45,8 +45,8 @@ function App() {
     setShowSplash(false);
   };
 
-  // Only use basename in production (GitHub Pages)
-  const basename = import.meta.env.MODE === 'production' ? '/cecilia-monte-cantini' : '';
+  // Using root path for custom domain
+  const basename = '';
 
   return (
     <>
