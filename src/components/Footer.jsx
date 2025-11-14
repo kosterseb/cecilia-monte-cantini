@@ -25,6 +25,7 @@ const Footer = () => {
           </div>
         </div>
         
+        {/* Credits */}
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Hotel Donatello. Montecatini Terme, Tuscany.</p>
           <div className="footer-credits">
