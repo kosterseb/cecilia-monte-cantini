@@ -1,11 +1,11 @@
 import './Guestbook.scss';
-import bgImage from '../assets/IMG-20250804-WA0206.jpg';
-import img1 from '../assets/IMG-20250804-WA0056.jpg';
-import img2 from '../assets/IMG-20250804-WA0208.jpg';
-import img3 from '../assets/IMG-20250804-WA0229.jpg';
-import img4 from '../assets/IMG-20250804-WA0412.jpg';
-import img5 from '../assets/IMG-20250804-WA0413.jpg';
-import img6 from '../assets/IMG-20250804-WA0417.jpg';
+import bgImage from '../assets/IMG-20250804-WA0208.jpg';
+import img1 from '../assets/gallery/IMG_0657.jpeg';
+import img2 from '../assets/gallery/IMG_0662.jpeg';
+import img3 from '../assets/gallery/IMG_0668.jpeg';
+import img4 from '../assets/gallery/IMG_8041.jpeg';
+import img5 from '../assets/gallery/IMG_9757.jpeg';
+import img6 from '../assets/gallery/IMG_9795.jpeg';
 
 const Guestbook = () => {
   return (
