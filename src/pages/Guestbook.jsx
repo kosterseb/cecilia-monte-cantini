@@ -106,7 +106,7 @@ const Guestbook = () => {
                 <h2>Property Documentation</h2>
                 <p>Download the complete property prospectus for detailed information, floor plans, and specifications.</p>
                 <a href="src/assets/property-pdf/property-prospectus.pdf" className="pdf-download-btn" download>
-                  <span className="pdf-icon">📄</span>
+                  <span className="pdf-icon"></span>
                   Download Property Prospectus (PDF)
                 </a>
               </div>
