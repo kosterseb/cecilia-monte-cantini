@@ -1,10 +1,11 @@
 @use '../styles/main.scss' as *;
 @use 'sass:color';
 
-.guestbook-page {
+.property-page {
   min-height: 100vh;
   padding-top: $spacing-md;
   position: relative;
+  background: linear-gradient(135deg, #fdfbfb 0%, #f5f5f5 100%);
 }
 
 .page-background {
@@ -17,254 +18,304 @@
   background-position: center;
   background-attachment: fixed;
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.08;
 
   @media (max-width: $mobile) {
     background-attachment: scroll;
   }
 }
 
-.guestbook-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-xl;
-  margin-top: $spacing-xl;
-  
-  @media (max-width: $tablet) {
-    grid-template-columns: 1fr;
-    gap: $spacing-lg;
-  }
-}
+// Header Section
+.property-header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  padding: $spacing-xl $spacing-md;
 
-// Form Section
-.guestbook-form-container {
-  background: white;
-  padding: $spacing-lg;
-  border-radius: 4px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-  
-  h2 {
+  .property-title {
+    font-size: 2.8rem;
     color: $dark-color;
     margin-bottom: $spacing-md;
-  }
-}
+    font-weight: 600;
+    letter-spacing: -0.5px;
 
-.guestbook-form {
-  .form-group {
-    margin-bottom: $spacing-md;
-    
-    label {
-      display: block;
-      color: $text-color;
-      font-weight: 500;
-      margin-bottom: $spacing-xs;
-      font-size: 1rem;
+    @media (max-width: $tablet) {
+      font-size: 2.2rem;
     }
-    
-    input,
-    textarea {
-      width: 100%;
-      padding: $spacing-sm;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-family: $font-primary;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      
-      &:focus {
-        outline: none;
-        border-color: $accent-color;
-      }
-      
-      &::placeholder {
-        color: #aaa;
-      }
-    }
-    
-    textarea {
-      resize: vertical;
-      min-height: 120px;
+
+    @media (max-width: $mobile) {
+      font-size: 1.8rem;
     }
   }
-  
-  .submit-btn {
-    width: 100%;
-    padding: $spacing-sm $spacing-md;
-    background: $accent-color;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    
-    &:hover {
-      background: color.adjust($accent-color, $lightness: -10%);
-      transform: translateY(-2px);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-  }
-  
-  .success-message {
-    margin-top: $spacing-md;
-    padding: $spacing-sm;
-    background: #d4edda;
-    color: #155724;
-    border-radius: 4px;
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-  }
 
-  .error-message {
-    margin-top: $spacing-md;
-    padding: $spacing-sm;
-    background: #f8d7da;
-    color: #721c24;
-    border-radius: 4px;
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-  }
-}
-
-.auth-info {
-  color: $text-light;
-  font-size: 0.95rem;
-  margin-bottom: $spacing-md;
-  line-height: 1.6;
-}
-
-.guest-code-input {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-// Entries Section
-.guestbook-entries {
-  h2 {
-    color: $dark-color;
-    margin-bottom: $spacing-md;
-  }
-  
-  .no-entries {
+  .property-subtitle {
+    font-size: 1.3rem;
     color: $text-light;
     font-style: italic;
-    text-align: center;
-    padding: $spacing-lg;
+    font-weight: 300;
+
+    @media (max-width: $mobile) {
+      font-size: 1.1rem;
+    }
   }
 }
 
-.entries-list {
+// Content Layout
+.property-content {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
-  max-height: 800px;
-  overflow-y: auto;
-  padding-right: $spacing-xs;
-  
-  // Custom scrollbar
-  &::-webkit-scrollbar {
-    width: 6px;
+  gap: $spacing-xl;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Description Section
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.description-card {
+  background: white;
+  padding: $spacing-xl;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+
+  h2 {
+    color: $dark-color;
+    font-size: 1.8rem;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid $accent-color;
+
+    @media (max-width: $mobile) {
+      font-size: 1.5rem;
+    }
   }
-  
-  &::-webkit-scrollbar-thumb {
-    background: $accent-color;
-    border-radius: 10px;
-    
-    &:hover {
-      background: color.adjust($accent-color, $lightness: -10%);
+
+  p {
+    color: $text-color;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $dark-color;
+      font-weight: 600;
+    }
+  }
+
+  &.highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    .closing-statement {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 400;
+      text-align: center;
+      margin: 0;
+      line-height: 1.7;
     }
   }
 }
 
-.entry-card {
-  background: white;
-  padding: $spacing-md;
-  border-radius: 4px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  border-left: 3px solid $accent-color;
-  animation: slideIn 0.3s ease;
-}
+// Property Gallery
+.property-gallery {
+  padding: $spacing-lg 0;
 
-.entry-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: $spacing-sm;
-  gap: $spacing-sm;
-
-  h3 {
+  h2 {
     color: $dark-color;
-    font-size: 1.25rem;
-    margin: 0;
-  }
+    font-size: 2rem;
+    margin-bottom: $spacing-xl;
+    text-align: center;
 
-  .entry-location {
-    color: $text-light;
-    font-size: 0.9rem;
-    font-style: italic;
+    @media (max-width: $mobile) {
+      font-size: 1.6rem;
+    }
   }
 }
 
-.delete-btn {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: $spacing-xs;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.6;
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+
+  @media (max-width: $mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 4 / 3;
+  background: #f0f0f0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  &:hover img {
+    transform: scale(1.08);
+  }
+}
+
+// PDF Download Section
+.pdf-section {
+  padding: $spacing-xl 0;
+}
+
+.pdf-card {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: $spacing-xl;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(245, 87, 108, 0.3);
+
+  h2 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    margin-bottom: $spacing-lg;
+    line-height: 1.6;
+  }
+}
+
+.pdf-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: white;
+  color: #f5576c;
+  padding: $spacing-md $spacing-xl;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  .pdf-icon {
+    font-size: 1.5rem;
+  }
 
   &:hover {
-    opacity: 1;
-    transform: scale(1.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    background: #fafafa;
   }
 
   &:active {
-    transform: scale(1);
+    transform: translateY(-1px);
   }
 }
 
-.admin-badge {
-  background: #fff3cd;
+// Disclaimer Section
+.disclaimer-section {
+  background: #fff9e6;
+  padding: $spacing-xl;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+
+  h3 {
+    color: #856404;
+    font-size: 1.4rem;
+    margin-bottom: $spacing-md;
+    font-weight: 600;
+  }
+}
+
+.disclaimer-content {
   color: #856404;
-  padding: $spacing-xs $spacing-sm;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: $spacing-md;
-  border: 1px solid #ffeaa7;
-}
-
-.entry-message {
-  color: $text-color;
+  font-size: 0.95rem;
   line-height: 1.7;
-  margin-bottom: $spacing-sm;
+
+  p {
+    margin-bottom: $spacing-sm;
+    padding-left: $spacing-md;
+    position: relative;
+
+    &:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
-.entry-date {
-  color: $text-light;
-  font-size: 0.85rem;
-  display: block;
-  text-align: right;
-}
-
-@keyframes slideIn {
+// Animations
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.description-card,
+.gallery-item,
+.pdf-card,
+.disclaimer-section {
+  animation: fadeIn 0.6s ease backwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: $tablet) {
+  .property-page {
+    padding-top: $spacing-sm;
+  }
+
+  .description-card,
+  .pdf-card {
+    padding: $spacing-lg;
+  }
+
+  .property-header {
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+@media (max-width: $mobile) {
+  .description-card,
+  .pdf-card,
+  .disclaimer-section {
+    padding: $spacing-md;
   }
 }

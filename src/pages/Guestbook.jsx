@@ -1,282 +1,137 @@
-import { useState, useEffect } from 'react';
 import './Guestbook.scss';
 import bgImage from '../assets/IMG-20250804-WA0206.jpg';
-import { collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, Timestamp } from 'firebase/firestore';
-import { signInAnonymously } from 'firebase/auth';
-import { db, auth, GUEST_CODE, ADMIN_CODE } from '../utils/firebaseConfig';
+import img1 from '../assets/IMG-20250804-WA0056.jpg';
+import img2 from '../assets/IMG-20250804-WA0208.jpg';
+import img3 from '../assets/IMG-20250804-WA0229.jpg';
+import img4 from '../assets/IMG-20250804-WA0412.jpg';
+import img5 from '../assets/IMG-20250804-WA0413.jpg';
+import img6 from '../assets/IMG-20250804-WA0417.jpg';
 
 const Guestbook = () => {
-  const [entries, setEntries] = useState([]);
-  const [formData, setFormData] = useState({
-    name: '',
-    location: '',
-    message: ''
-  });
-  const [guestCode, setGuestCode] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  // Load entries from Firestore on mount
-  useEffect(() => {
-    fetchEntries();
-  }, []);
-
-  const fetchEntries = async () => {
-    try {
-      const q = query(collection(db, 'guestbook'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const fetchedEntries = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        date: doc.data().createdAt?.toDate().toLocaleDateString('en-GB', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        })
-      }));
-      setEntries(fetchedEntries);
-    } catch (error) {
-      console.error('Error fetching entries:', error);
-    }
-  };
-
-  const handleCodeSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    const enteredCode = guestCode.trim().toUpperCase();
-
-    if (enteredCode === ADMIN_CODE) {
-      try {
-        await signInAnonymously(auth);
-        setIsAuthenticated(true);
-        setIsAdmin(true);
-        setError('');
-      } catch (error) {
-        console.error('Authentication error:', error);
-        setError('Authentication failed. Please try again.');
-      }
-    } else if (enteredCode === GUEST_CODE) {
-      try {
-        await signInAnonymously(auth);
-        setIsAuthenticated(true);
-        setIsAdmin(false);
-        setError('');
-      } catch (error) {
-        console.error('Authentication error:', error);
-        setError('Authentication failed. Please try again.');
-      }
-    } else {
-      setError('Invalid guest code. Please check with the hotel reception.');
-    }
-    setLoading(false);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    try {
-      const newEntry = {
-        ...formData,
-        createdAt: Timestamp.now(),
-        userId: auth.currentUser?.uid || 'anonymous'
-      };
-
-      await addDoc(collection(db, 'guestbook'), newEntry);
-
-      // Reset form
-      setFormData({
-        name: '',
-        location: '',
-        message: ''
-      });
-
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
-
-      // Refresh entries
-      await fetchEntries();
-    } catch (error) {
-      console.error('Error adding entry:', error);
-      setError('Failed to submit your message. Please try again.');
-    }
-    setLoading(false);
-  };
-
-  const handleDelete = async (entryId) => {
-    if (!isAdmin) {
-      setError('You do not have permission to delete entries.');
-      return;
-    }
-
-    if (!window.confirm('Are you sure you want to delete this entry?')) {
-      return;
-    }
-
-    try {
-      await deleteDoc(doc(db, 'guestbook', entryId));
-      await fetchEntries();
-    } catch (error) {
-      console.error('Error deleting entry:', error);
-      setError('Failed to delete entry. Please try again.');
-    }
-  };
-
   return (
-    <div className="guestbook-page">
+    <div className="property-page">
       <div className="page-background" style={{ backgroundImage: `url(${bgImage})` }}></div>
+
       <section className="section">
         <div className="container">
-          <h1 className="page-title text-center">Guestbook</h1>
-          <p className="page-subtitle text-center">
-            Share your experience and leave a message for future guests
-          </p>
+          <div className="property-header">
+            <h1 className="property-title">Charming Italian B&B – Montecatini Terme</h1>
+            <p className="property-subtitle">A Rare Blend of Classic Italian Charm and Modern Comfort</p>
+          </div>
 
-          <div className="guestbook-content">
-            <div className="guestbook-form-container">
-              {!isAuthenticated ? (
-                <>
-                  <h2>Guest Access</h2>
-                  <p className="auth-info">
-                    Please enter the guest code provided by Hotel Donatello to leave a review.
-                  </p>
-                  <form onSubmit={handleCodeSubmit} className="guestbook-form">
-                    <div className="form-group">
-                      <label htmlFor="guestCode">Guest Code *</label>
-                      <input
-                        type="text"
-                        id="guestCode"
-                        name="guestCode"
-                        value={guestCode}
-                        onChange={(e) => setGuestCode(e.target.value)}
-                        required
-                        placeholder="Enter your guest code"
-                        className="guest-code-input"
-                      />
-                    </div>
+          <div className="property-content">
+            {/* Main Description Section */}
+            <div className="description-section">
+              <div className="description-card">
+                <h2>About This Property</h2>
+                <p>
+                  Located on one of Montecatini Terme's most picturesque and historic streets,
+                  shaded by beautiful plane trees, this elegant <strong>675 m²</strong> estate offers
+                  a rare blend of classic Italian charm and modern comfort. Its exceptionally central
+                  position places cafés, shops, parks, and transport within easy walking distance,
+                  making it an ideal setting for an inviting and refined B&B.
+                </p>
+              </div>
 
-                    {error && (
-                      <div className="error-message">
-                        {error}
-                      </div>
-                    )}
+              <div className="description-card">
+                <h2>Accommodation</h2>
+                <p>
+                  Across three floors, the property features <strong>20 comfortable double rooms</strong>,
+                  each with its own private bathroom equipped with toilet, shower, and bidet. The
+                  atmosphere throughout is warm, authentic, and beautifully preserved, reflecting
+                  the building's original Italian character.
+                </p>
+              </div>
 
-                    <button type="submit" className="submit-btn" disabled={loading}>
-                      {loading ? 'Verifying...' : 'Verify Code'}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <>
-                  <h2>Leave a Message</h2>
-                  <form onSubmit={handleSubmit} className="guestbook-form">
-                    <div className="form-group">
-                      <label htmlFor="name">Name *</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your name"
-                      />
-                    </div>
+              <div className="description-card">
+                <h2>Common Areas & Amenities</h2>
+                <p>
+                  The ground floor provides a welcoming flow of shared spaces, including a stylish
+                  lounge, an elegant dining room, and a newly installed professional kitchen fitted
+                  with <strong>Ilve, Gaggenau, and Bosch</strong> appliances, as well as a dedicated wine
+                  refrigerator. A charming terrace facing the tree-lined street offers the perfect
+                  spot for guests to enjoy breakfast or unwind in the evening.
+                </p>
+                <p>
+                  Efficient new heating system, installed by Danish engineers.
+                </p>
+              </div>
 
-                    <div className="form-group">
-                      <label htmlFor="location">Location *</label>
-                      <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        required
-                        placeholder="Where are you from?"
-                      />
-                    </div>
+              <div className="description-card">
+                <h2>Additional Facilities</h2>
+                <p>
+                  A full basement includes an industrial kitchen and service rooms that are fully
+                  functional but suitable for upgrading. A first-floor terrace also presents potential
+                  for enhancement, offering additional outdoor space for guest relaxation or future
+                  expansion.
+                </p>
+              </div>
 
-                    <div className="form-group">
-                      <label htmlFor="message">Message *</label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        placeholder="Share your thoughts about your stay at Hotel Donatello..."
-                        rows="5"
-                      ></textarea>
-                    </div>
-
-                    {error && (
-                      <div className="error-message">
-                        {error}
-                      </div>
-                    )}
-
-                    <button type="submit" className="submit-btn" disabled={loading}>
-                      {loading ? 'Submitting...' : 'Submit Message'}
-                    </button>
-
-                    {submitted && (
-                      <div className="success-message">
-                        Thank you for your message! ✓
-                      </div>
-                    )}
-                  </form>
-                </>
-              )}
+              <div className="description-card highlight">
+                <p className="closing-statement">
+                  This centrally located B&B property combines history, atmosphere, and opportunity
+                  — an exceptional offering in the heart of Montecatini Terme.
+                </p>
+              </div>
             </div>
 
-            <div className="guestbook-entries">
-              <h2>Guest Messages</h2>
-              {isAdmin && (
-                <p className="admin-badge">
-                  🔑 Admin Mode - You can delete entries
-                </p>
-              )}
-              {entries.length === 0 ? (
-                <p className="no-entries">Be the first to leave a message!</p>
-              ) : (
-                <div className="entries-list">
-                  {entries.map((entry) => (
-                    <div key={entry.id} className="entry-card">
-                      <div className="entry-header">
-                        <div>
-                          <h3>{entry.name}</h3>
-                          <span className="entry-location">{entry.location}</span>
-                        </div>
-                        {isAdmin && (
-                          <button
-                            className="delete-btn"
-                            onClick={() => handleDelete(entry.id)}
-                            title="Delete entry"
-                          >
-                            🗑️
-                          </button>
-                        )}
-                      </div>
-                      <p className="entry-message">{entry.message}</p>
-                      <span className="entry-date">{entry.date}</span>
-                    </div>
-                  ))}
+            {/* Image Gallery Section */}
+            <div className="property-gallery">
+              <h2>Property Gallery</h2>
+              <div className="gallery-grid">
+                <div className="gallery-item">
+                  <img src={img1} alt="Property exterior view" />
                 </div>
-              )}
+                <div className="gallery-item">
+                  <img src={img2} alt="Interior room" />
+                </div>
+                <div className="gallery-item">
+                  <img src={img3} alt="Common area" />
+                </div>
+                <div className="gallery-item">
+                  <img src={img4} alt="Dining area" />
+                </div>
+                <div className="gallery-item">
+                  <img src={img5} alt="Guest room" />
+                </div>
+                <div className="gallery-item">
+                  <img src={img6} alt="Terrace view" />
+                </div>
+              </div>
+            </div>
+
+            {/* PDF Download Section */}
+            <div className="pdf-section">
+              <div className="pdf-card">
+                <h2>Property Documentation</h2>
+                <p>Download the complete property prospectus for detailed information, floor plans, and specifications.</p>
+                <a href="/property-prospectus.pdf" className="pdf-download-btn" download>
+                  <span className="pdf-icon">📄</span>
+                  Download Property Prospectus (PDF)
+                </a>
+              </div>
+            </div>
+
+            {/* Disclaimer Section */}
+            <div className="disclaimer-section">
+              <h3>Disclaimer</h3>
+              <div className="disclaimer-content">
+                <p>
+                  All stated measurements are approximate. The seller accepts no responsibility for inaccuracies.
+                </p>
+                <p>
+                  All areas, measurements, and specifications are provided for guidance only and are not guaranteed.
+                  The seller shall not be held liable for any errors or omissions.
+                </p>
+                <p>
+                  All square meters, dimensions, and technical details are approximate and subject to verification
+                  by the buyer. The seller disclaims any and all liability for inaccuracies, errors, or omissions.
+                </p>
+                <p>
+                  Measurements and specifications are believed to be correct but are not warranted. Prospective
+                  buyers must verify all information independently.
+                </p>
+              </div>
             </div>
           </div>
         </div>
