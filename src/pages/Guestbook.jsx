@@ -6,6 +6,7 @@ import img3 from '../assets/gallery/IMG_0668.jpeg';
 import img4 from '../assets/gallery/IMG_8041.jpeg';
 import img5 from '../assets/gallery/IMG_9757.jpeg';
 import img6 from '../assets/gallery/IMG_9795.jpeg';
+import propertyPdf from '../assets/property-pdf/property-prospectus.pdf';
 
 const Guestbook = () => {
   return (
@@ -100,13 +101,24 @@ const Guestbook = () => {
               </div>
             </div>
 
-            {/* PDF Download Section */}
+            {/* PDF Viewer and Download Section */}
             <div className="pdf-section">
               <div className="pdf-card">
                 <h2>Property Documentation</h2>
-                <p>Download the complete property prospectus for detailed information, floor plans, and specifications.</p>
-                <a href="src/assets/property-pdf/property-prospectus.pdf" className="pdf-download-btn" download>
-                  <span className="pdf-icon"></span>
+                <p>View the complete property prospectus with detailed information, floor plans, and specifications.</p>
+
+                {/* PDF Viewer */}
+                <div className="pdf-viewer-container">
+                  <iframe
+                    src={propertyPdf}
+                    title="Property Prospectus"
+                    className="pdf-viewer"
+                  />
+                </div>
+
+                {/* Download Button */}
+                <a href={propertyPdf} className="pdf-download-btn" download="Property-Prospectus-Montecatini.pdf">
+                  <span className="pdf-icon">📄</span>
                   Download Property Prospectus (PDF)
                 </a>
               </div>

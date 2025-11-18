@@ -204,10 +204,36 @@
   }
 }
 
+// PDF Viewer Container
+.pdf-viewer-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto $spacing-lg;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-viewer {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+
+  @media (max-width: $tablet) {
+    height: 500px;
+  }
+
+  @media (max-width: $mobile) {
+    height: 400px;
+  }
+}
+
 .pdf-download-btn {
   display: inline-flex;
   align-items: center;
-  
+  gap: $spacing-sm;
   background: white;
   color: #f5576c;
   padding: $spacing-md $spacing-xl;
