@@ -17,6 +17,9 @@ const Footer = () => {
             <br />
             <h5>For reservations:</h5>
             <p>hotel@donatello.dk</p>
+            <br />
+            <h5>Phone:</h5>
+            <p>+45 28 90 91 92</p>
           </div>
 
           <div className="footer-section">
