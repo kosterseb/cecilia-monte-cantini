@@ -65,8 +65,6 @@ const Contact = () => {
                 <h3>Email</h3>
                 <h4>For info:</h4>
                 <p>casa@donatello.dk</p>
-                <h4>For reservations:</h4>
-                <p>hotel@donatello.dk</p>
               </div>
 
               <div className="info-card">
